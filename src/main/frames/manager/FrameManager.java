@@ -1,0 +1,39 @@
+package main.frames.manager;
+
+import java.util.Map;
+
+import javax.swing.JFrame;
+
+import main.frames.GameFrame;
+import main.frames.MenuFrame;
+import main.game.GameContainer;
+
+public class FrameManager {
+	private static FrameManager instance;
+	
+	private JFrame gameFrame;
+	private JFrame menuFrame;
+	
+	public JFrame getGameFrame(){
+		if(this.gameFrame == null){
+			this.gameFrame = new GameFrame();
+		}
+		return gameFrame;
+	}
+	
+	public JFrame getMenuFrame(){
+		if(this.menuFrame == null){
+			this.menuFrame = new MenuFrame();
+		}
+		return this.menuFrame;
+	}
+	
+	public static FrameManager getInstance() {
+		if(instance == null){
+			instance = new FrameManager();
+		}
+		return instance;
+	}
+	
+	
+}
