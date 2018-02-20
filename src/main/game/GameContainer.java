@@ -1,9 +1,8 @@
 package main.game;
 
 public class GameContainer {
-	private static final int WIDTH     = 16;
-	private static final int HEIGHT    = 16;
-	private static final int CELL_SIZE = 16;
+	public static final int WIDTH     = 16;
+	public static final int HEIGHT    = 16;
 	
 	private static volatile GameContainer instance;
 	
@@ -29,10 +28,12 @@ public class GameContainer {
 	}
 
 	public synchronized static GameContainer getInstance() {
+		
 		if(instance == null){
 			instance = new GameContainer();
 		}
 		return instance;
+		
 	}
 	
 }

@@ -15,9 +15,9 @@ public class SnakeService {
 	public void initSnake(Snake snake) {
 		
 		List <Cell> body = snake.getBody();
-		body.add(new Cell(3, 0));
-		body.add(new Cell(3, 0));
-		body.add(new Cell(3, 0));
+		body.add(new Cell(2, 0));
+		body.add(new Cell(1, 0));
+		body.add(new Cell(0, 0));
 		
 	}
 	
