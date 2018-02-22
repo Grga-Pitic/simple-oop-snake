@@ -3,6 +3,7 @@ package main.game.services;
 import java.util.List;
 
 import main.game.Cell;
+import main.game.GameContainer;
 import main.game.Snake;
 
 public class SnakeService {
@@ -21,6 +22,34 @@ public class SnakeService {
 		
 	}
 	
+	public void move(Snake snake) {
+		
+		Cell tail = snake.getBody().remove(snake.getBody().size()-1);
+		Cell head = snake.getBody().get(0);
+		copyPosition(tail, head);
+		
+		switch(snake.getDirection()){
+		case Snake.RIGHT: tail.setX(tail.getX()+1);
+					      break;
+		case Snake.LEFT:  tail.setX(tail.getX()-1);
+						  break;
+		case Snake.DOWN:  tail.setY(tail.getY()+1);
+						  break;
+		case Snake.UP:    tail.setY(tail.getY()+1);
+					      break;
+		}
+		
+		if(!GameContainer.getInstance().getField()[tail.getX()][tail.getY()]){
+			snake.getBody().add(0, tail);
+			return;
+		}
+		
+		System.out.print("гамовер\n");
+		
+		
+		
+	}
+	
 	public static SnakeService getInstance() {
 		
 		if(instance == null){
@@ -28,6 +57,13 @@ public class SnakeService {
 		}
 		
 		return instance;
+	}
+	
+	private void copyPosition(Cell cell1, Cell cell2) {
+		
+		cell1.setX(cell2.getX());
+		cell1.setY(cell2.getY());
+		
 	}
 	
 }

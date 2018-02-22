@@ -38,15 +38,18 @@ public class GameThread implements Runnable {
 		}
 		
 		IPainter painter = SnakePainter.getInstance();
-		painter.drawSnake(snake);
+		
 		while(true) {
+			
+			//SnakeService.getInstance().move(snake);
+			painter.drawSnake(snake);
 			try {
-				Thread.sleep(200);
+				Thread.sleep(600);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
 	//		FrameManager.getInstance().getGameFrame().getContentPane().repaint();
-			break;
 		}
 		
 	}

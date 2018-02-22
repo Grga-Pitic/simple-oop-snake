@@ -8,10 +8,10 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 public class Snake {
-	public static int UP    = 0;
-	public static int RIGHT = 1;
-	public static int DOWN  = 2;
-	public static int LEFT  = 3;
+	public static final int UP    = 0;
+	public static final int RIGHT = 1;
+	public static final int DOWN  = 2;
+	public static final int LEFT  = 3;
 	
 	private List <Cell> body;
 	private int score;
@@ -26,6 +26,14 @@ public class Snake {
 		this.direction = RIGHT;
 	}
 	
+	public int getDirection() {
+		return direction;
+	}
+
+	public void setDirection(int direction) {
+		this.direction = direction;
+	}
+
 	public Image getHeadImage() {
 		return headImage;
 	}

@@ -6,12 +6,15 @@ public class GameContainer {
 	
 	private static volatile GameContainer instance;
 	
+	private boolean gameOver;
+	
 	private boolean [][] field;
 	private Snake        snake;
 	
 	public GameContainer() {
 		
-		this.field = new boolean[WIDTH][HEIGHT];
+		this.field    = new boolean[WIDTH][HEIGHT];
+		this.gameOver = false;
 		
 	}
 	

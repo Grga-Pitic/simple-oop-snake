@@ -23,13 +23,21 @@ public class SnakePainter implements IPainter {
 		
 		for(Cell cell:snake.getBody()){
 			cell.getImage().setImage(snake.getBodyImage());
-			System.out.print(cell.getX() + " "+ cell.getY()+"\n");
 			cell.getImage().setBounds(cell.getX()*CustomImage.CELL_SIZE, 
 									  cell.getY()*CustomImage.CELL_SIZE, 
 									  cell.getX()*CustomImage.CELL_SIZE+CustomImage.CELL_SIZE, 
 									  cell.getY()*CustomImage.CELL_SIZE+CustomImage.CELL_SIZE);
 			
 		}
+		
+		Cell head = snake.getBody().get(0);
+		head.getImage().setImage(snake.getHeadImage());
+		head.getImage().setBounds(head.getX()*CustomImage.CELL_SIZE, 
+								  head.getY()*CustomImage.CELL_SIZE, 
+								  head.getX()*CustomImage.CELL_SIZE+CustomImage.CELL_SIZE, 
+								  head.getY()*CustomImage.CELL_SIZE+CustomImage.CELL_SIZE);
+		
+		
 		
 	}
 	
