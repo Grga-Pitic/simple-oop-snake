@@ -16,8 +16,9 @@ import main.game.threads.GameThread;
 
 public class Activator {
 	public static void main(String [] args) {
-		FrameManager.getInstance().getGameFrame().setVisible(true);
+		FrameManager.getInstance().getMenuFrame().setVisible(true);
 		
+		/*
 		GameContainer game  = GameContainer.getInstance();
 		Snake snake;
 		snake = new Snake(new LinkedList<Cell>());
@@ -35,5 +36,6 @@ public class Activator {
 		}
 		
 		new Thread(new GameThread()).start();
+		*/
 	}
 }

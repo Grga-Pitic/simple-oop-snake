@@ -39,14 +39,25 @@ public class SnakeService {
 					      break;
 		}
 		
+		
+		
+		if(!((tail.getX() >= 0) && (tail.getX() < GameContainer.WIDTH))) {
+			GameContainer.getInstance().setGameOver(true);
+			return;
+		}
+		
+		if(!((tail.getY() >= 0) && (tail.getY() < GameContainer.HEIGHT))) {
+			
+			GameContainer.getInstance().setGameOver(true);
+			return;
+			
+		}
+		
 		if(!GameContainer.getInstance().getField()[tail.getX()][tail.getY()]){
 			snake.getBody().add(0, tail);
 			return;
 		}
-		
-		System.out.print("гамовер\n");
-		
-		
+		GameContainer.getInstance().setGameOver(true);
 		
 	}
 	

@@ -23,20 +23,29 @@ public class GameThread implements Runnable {
 		
 		Snake snake = GameContainer.getInstance().getSnake();
 		IPainter painter = SnakePainter.getInstance();
-		
+		painter.drawSnake(snake);
 		while(true) {
-			
-			SnakeService.getInstance().move(snake);
 			painter.drawSnake(snake);
 			FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 			try {
-				Thread.sleep(600);
+				Thread.sleep(400);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
+			SnakeService.getInstance().move(snake);
+			
+			
+			if(GameContainer.getInstance().isGameOver()){
+				break;
+			}
+			
 	//		FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 		}
+		
+		FrameManager.getInstance().getGameoverFrame().setVisible(true);
+		
+		System.out.print("end of thread\n");
 		
 	}
 

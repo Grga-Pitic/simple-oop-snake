@@ -29,6 +29,14 @@ public class GameContainer {
 	public boolean[][] getField() {
 		return field;
 	}
+	
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
 
 	public synchronized static GameContainer getInstance() {
 		
