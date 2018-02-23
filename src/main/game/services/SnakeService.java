@@ -35,7 +35,7 @@ public class SnakeService {
 						  break;
 		case Snake.DOWN:  tail.setY(tail.getY()+1);
 						  break;
-		case Snake.UP:    tail.setY(tail.getY()+1);
+		case Snake.UP:    tail.setY(tail.getY()-1);
 					      break;
 		}
 		

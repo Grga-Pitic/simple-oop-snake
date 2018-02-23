@@ -21,28 +21,14 @@ public class GameThread implements Runnable {
 	@Override
 	public void run() {
 		
-		GameContainer game  = GameContainer.getInstance();
-		Snake snake;
-		snake = new Snake(new LinkedList<Cell>());
-		
-		game.setSnake(snake);
-		
-		SnakeService.getInstance().initSnake(snake);
-		FieldService.getInstance().placeTheSnake(game.getField(), snake);
-		try {
-			snake.setHeadImage(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\head.jpg")));
-			snake.setBodyImage(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\body.jpg")));
-		
-		} catch (IOException e) {
-			System.out.print("Невозможно загрузить изображене");
-		}
-		
+		Snake snake = GameContainer.getInstance().getSnake();
 		IPainter painter = SnakePainter.getInstance();
 		
 		while(true) {
 			
-			//SnakeService.getInstance().move(snake);
+			SnakeService.getInstance().move(snake);
 			painter.drawSnake(snake);
+			FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 			try {
 				Thread.sleep(600);
 			} catch (InterruptedException e) {
