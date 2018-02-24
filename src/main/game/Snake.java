@@ -27,7 +27,7 @@ public class Snake {
 	}
 	
 	public int getDirection() {
-		return direction;
+		return this.direction;
 	}
 
 	public void setDirection(int direction) {
@@ -35,7 +35,7 @@ public class Snake {
 	}
 
 	public Image getHeadImage() {
-		return headImage;
+		return this.headImage;
 	}
 
 	public void setHeadImage(Image headImage) {
@@ -43,7 +43,7 @@ public class Snake {
 	}
 
 	public Image getBodyImage() {
-		return bodyImage;
+		return this.bodyImage;
 	}
 
 	public void setBodyImage(Image bodyImage) {
@@ -51,7 +51,7 @@ public class Snake {
 	}
 
 	public List<Cell> getBody() {
-		return body;
+		return this.body;
 	}
 	
 }

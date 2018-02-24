@@ -1,7 +1,8 @@
-package main.game.printer;
+package main.game.painter;
 
 import main.frames.components.CustomImage;
 import main.game.Cell;
+import main.game.Food;
 import main.game.Snake;
 
 public class SnakePainter implements IPainter {
@@ -39,6 +40,15 @@ public class SnakePainter implements IPainter {
 		
 		
 		
+	}
+
+	@Override
+	public void drawFood(Food food) {
+		food.getImageComponent().setImage(food.getImage());
+		food.getImageComponent().setBounds(food.getX()*CustomImage.CELL_SIZE, 
+										   food.getY()*CustomImage.CELL_SIZE, 
+										   food.getX()*CustomImage.CELL_SIZE+CustomImage.CELL_SIZE, 
+										   food.getY()*CustomImage.CELL_SIZE+CustomImage.CELL_SIZE);
 	}
 	
 }

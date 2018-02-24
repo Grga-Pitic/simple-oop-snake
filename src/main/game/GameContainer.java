@@ -10,6 +10,7 @@ public class GameContainer {
 	
 	private boolean [][] field;
 	private Snake        snake;
+	private Food		 food;
 	
 	public GameContainer() {
 		
@@ -36,6 +37,14 @@ public class GameContainer {
 
 	public void setGameOver(boolean gameOver) {
 		this.gameOver = gameOver;
+	}
+	
+	public Food getFood() {
+		return food;
+	}
+
+	public void setFood(Food food) {
+		this.food = food;
 	}
 
 	public synchronized static GameContainer getInstance() {

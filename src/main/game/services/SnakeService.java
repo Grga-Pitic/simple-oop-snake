@@ -3,6 +3,7 @@ package main.game.services;
 import java.util.List;
 
 import main.game.Cell;
+import main.game.Food;
 import main.game.GameContainer;
 import main.game.Snake;
 
@@ -24,8 +25,11 @@ public class SnakeService {
 	
 	public void move(Snake snake) {
 		
+		boolean [][] field = GameContainer.getInstance().getField();
+		
 		Cell tail = snake.getBody().remove(snake.getBody().size()-1);
 		Cell head = snake.getBody().get(0);
+		field[tail.getX()][tail.getY()] = false;
 		copyPosition(tail, head);
 		
 		switch(snake.getDirection()){
@@ -39,11 +43,21 @@ public class SnakeService {
 					      break;
 		}
 		
+		Food food = GameContainer.getInstance().getFood();
 		
+		if((tail.getX() == food.getX())&&(tail.getY() == food.getY())){
+			
+			List <Cell> body = snake.getBody();
+			body.add(new Cell(tail.getX(), tail.getY()));
+			FoodService.getInstance().randomPosition(food);
+			
+		}
 		
 		if(!((tail.getX() >= 0) && (tail.getX() < GameContainer.WIDTH))) {
+			
 			GameContainer.getInstance().setGameOver(true);
 			return;
+			
 		}
 		
 		if(!((tail.getY() >= 0) && (tail.getY() < GameContainer.HEIGHT))) {
@@ -55,6 +69,7 @@ public class SnakeService {
 		
 		if(!GameContainer.getInstance().getField()[tail.getX()][tail.getY()]){
 			snake.getBody().add(0, tail);
+			field[tail.getX()][tail.getY()] = true;
 			return;
 		}
 		GameContainer.getInstance().setGameOver(true);
@@ -69,6 +84,12 @@ public class SnakeService {
 		
 		return instance;
 	}
+	
+//	private void eat(Snake snake, int x, int y) {
+//		
+//		snake.getBody().add(new Cell(x, y));
+//		
+//	}
 	
 	private void copyPosition(Cell cell1, Cell cell2) {
 		

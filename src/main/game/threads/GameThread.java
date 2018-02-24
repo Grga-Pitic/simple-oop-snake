@@ -9,11 +9,13 @@ import javax.imageio.ImageIO;
 
 import main.frames.manager.FrameManager;
 import main.game.Cell;
+import main.game.Food;
 import main.game.GameContainer;
 import main.game.Snake;
-import main.game.printer.IPainter;
-import main.game.printer.SnakePainter;
+import main.game.painter.IPainter;
+import main.game.painter.SnakePainter;
 import main.game.services.FieldService;
+import main.game.services.FoodService;
 import main.game.services.SnakeService;
 
 public class GameThread implements Runnable {
@@ -22,10 +24,14 @@ public class GameThread implements Runnable {
 	public void run() {
 		
 		Snake snake = GameContainer.getInstance().getSnake();
+		Food  food  = GameContainer.getInstance().getFood();
+		
+		FoodService.getInstance().randomPosition(food);
 		IPainter painter = SnakePainter.getInstance();
 		painter.drawSnake(snake);
 		while(true) {
 			painter.drawSnake(snake);
+			painter.drawFood(food);
 			FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 			try {
 				Thread.sleep(400);
