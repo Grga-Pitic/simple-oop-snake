@@ -1,16 +1,43 @@
 package main.frames;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JPanel;
+
 import java.awt.GridBagConstraints;
+
 import javax.swing.JButton;
+
 import java.awt.Insets;
+
 import javax.swing.border.EmptyBorder;
 
+import main.frames.manager.FrameManager;
+import main.game.Cell;
+import main.game.GameContainer;
+import main.game.Snake;
+import main.game.services.FieldService;
+import main.game.services.SnakeService;
+import main.game.threads.GameThread;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.LinkedList;
+
 public class MenuFrame extends JFrame {
+	
+	private JFrame me;
+	
 	public MenuFrame() {
+		this.me = this;
+		
 		setTitle("Snake");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(245, 243);
 		setLocationRelativeTo(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -35,6 +62,20 @@ public class MenuFrame extends JFrame {
 		panel.setLayout(gbl_panel);
 		
 		JButton btnNewGame = new JButton("New Game");
+		btnNewGame.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				me.setVisible(false);
+				GameContainer game  = GameContainer.getInstance();
+				Snake snake         = game.getSnake();
+				
+				SnakeService.getInstance().initSnake(snake);
+				FieldService.getInstance().placeTheSnake(game.getField(), snake);
+				
+				
+				new Thread(new GameThread()).start();
+				FrameManager.getInstance().getGameFrame().setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_btnNewGame = new GridBagConstraints();
 		gbc_btnNewGame.fill = GridBagConstraints.BOTH;
 		gbc_btnNewGame.insets = new Insets(0, 0, 5, 0);
