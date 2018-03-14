@@ -5,6 +5,12 @@ import java.awt.Image;
 import main.frames.components.CustomImage;
 import main.frames.manager.FrameManager;
 
+
+/**
+ * Class store the snake food data.
+ * @author Grga
+ *
+ */
 public class Food {
 	private int x;
 	private int y;

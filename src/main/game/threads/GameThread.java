@@ -1,23 +1,19 @@
 package main.game.threads;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
-
-import javax.imageio.ImageIO;
-
 import main.frames.manager.FrameManager;
-import main.game.Cell;
 import main.game.Food;
 import main.game.GameContainer;
 import main.game.Snake;
 import main.game.painter.IPainter;
 import main.game.painter.SnakePainter;
-import main.game.services.FieldService;
 import main.game.services.FoodService;
 import main.game.services.SnakeService;
 
+/**
+ * Main game thread. Most of the gameplay process execute here.
+ * @author Grga
+ *
+ */
 public class GameThread implements Runnable {
 
 	@Override
@@ -40,7 +36,7 @@ public class GameThread implements Runnable {
 			}
 			
 			SnakeService.getInstance().move(snake);
-			
+			System.out.print(snake.getBody().get(0).getY()+"\n");
 			
 			if(GameContainer.getInstance().isGameOver()){
 				break;

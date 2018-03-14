@@ -5,6 +5,11 @@ import java.util.Random;
 import main.game.Food;
 import main.game.GameContainer;
 
+/**
+ * Class service. It need to generate new random food position.
+ * @author Grga
+ *
+ */
 public class FoodService {
 	public static FoodService instance;
 	

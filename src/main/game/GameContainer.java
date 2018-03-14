@@ -1,5 +1,11 @@
 package main.game;
 
+
+/**
+ * Class container. It store the game data. 
+ * @author Grga
+ *
+ */
 public class GameContainer {
 	public static final int WIDTH     = 16;
 	public static final int HEIGHT    = 16;

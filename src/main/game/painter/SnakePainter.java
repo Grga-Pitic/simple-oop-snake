@@ -5,6 +5,11 @@ import main.game.Cell;
 import main.game.Food;
 import main.game.Snake;
 
+/**
+ * Class painter. It output different things (snake, food, etc).
+ * @author Grga
+ *
+ */
 public class SnakePainter implements IPainter {
 	
 	private static SnakePainter instance;

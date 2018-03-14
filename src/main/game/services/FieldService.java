@@ -5,6 +5,11 @@ import java.util.List;
 import main.game.Cell;
 import main.game.Snake;
 
+/**
+ * Class service. It process the game field.
+ * @author Grga
+ *
+ */
 public class FieldService {
 	private static FieldService instance;
 	

@@ -1,6 +1,5 @@
 package main.frames;
 
-import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 
 import java.awt.GridBagLayout;
@@ -16,7 +15,6 @@ import java.awt.Insets;
 import javax.swing.border.EmptyBorder;
 
 import main.frames.manager.FrameManager;
-import main.game.Cell;
 import main.game.GameContainer;
 import main.game.Snake;
 import main.game.services.FieldService;
@@ -25,9 +23,6 @@ import main.game.threads.GameThread;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.LinkedList;
 
 public class MenuFrame extends JFrame {
 	

@@ -16,6 +16,10 @@ import main.game.services.SnakeService;
 import main.game.threads.GameThread;
 
 public class Activator {
+	/**
+	 * Main entry point
+	 * @param args
+	 */
 	public static void main(String [] args) {
 		GameContainer game  = GameContainer.getInstance();
 		
@@ -34,24 +38,5 @@ public class Activator {
 		
 		FrameManager.getInstance().getMenuFrame().setVisible(true);
 		
-		/*
-		GameContainer game  = GameContainer.getInstance();
-		Snake snake;
-		snake = new Snake(new LinkedList<Cell>());
-		
-		game.setSnake(snake);
-		
-		SnakeService.getInstance().initSnake(snake);
-		FieldService.getInstance().placeTheSnake(game.getField(), snake);
-		try {
-			snake.setHeadImage(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\head.jpg")));
-			snake.setBodyImage(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\body.jpg")));
-		
-		} catch (IOException e) {
-			System.out.print("Невозможно загрузить изображене");
-		}
-		
-		new Thread(new GameThread()).start();
-		*/
 	}
 }

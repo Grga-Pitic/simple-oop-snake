@@ -1,12 +1,14 @@
 package main.game;
 
 import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
-import javax.imageio.ImageIO;
 
+/**
+ * Class container. It store the snake data.
+ * @author Grga
+ *
+ */
 public class Snake {
 	public static final int UP    = 0;
 	public static final int RIGHT = 1;

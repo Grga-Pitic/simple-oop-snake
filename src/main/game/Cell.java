@@ -3,6 +3,12 @@ package main.game;
 import main.frames.components.CustomImage;
 import main.frames.manager.FrameManager;
 
+
+/**
+ * Cell is part of snake. It use to store cell position and output component.
+ * @author Grga
+ *
+ */
 public class Cell {
 	private int x;
 	private int y;
