@@ -11,10 +11,12 @@ import java.awt.Color;
 
 public class GameFrame extends JFrame {
 	public GameFrame() {
-		
+		setFocusable(true);
+		int width  = GameContainer.getInstance().getSettings().getWidth();
+		int height = GameContainer.getInstance().getSettings().getHeight();
 		addKeyListener(new SnakeControl());
-		setSize(GameContainer.WIDTH*CustomImage.CELL_SIZE+6, 
-				GameContainer.HEIGHT*CustomImage.CELL_SIZE+28); // constants is workaround
+		setSize(width*CustomImage.CELL_SIZE+6, 
+				height*CustomImage.CELL_SIZE+28); // constants is workaround
 		setBackground(Color.WHITE);
 		getContentPane().setBackground(Color.WHITE);
 		setLocationRelativeTo(null);

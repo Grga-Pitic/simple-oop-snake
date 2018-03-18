@@ -14,13 +14,15 @@ import main.game.Snake;
 import main.game.services.FieldService;
 import main.game.services.SnakeService;
 import main.game.threads.GameThread;
+import main.settings.services.SettingIOService;
 
 public class Activator {
 	/**
 	 * Main entry point
 	 * @param args
+	 * @throws IOException 
 	 */
-	public static void main(String [] args) {
+	public static void main(String [] args) throws IOException {
 		GameContainer game  = GameContainer.getInstance();
 		
 		Snake snake = new Snake(new LinkedList<Cell>());;

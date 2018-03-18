@@ -30,19 +30,17 @@ public class GameThread implements Runnable {
 			painter.drawFood(food);
 			FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 			try {
-				Thread.sleep(400);
+				Thread.sleep(GameContainer.getInstance().getSettings().getGameSpeed());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			
 			SnakeService.getInstance().move(snake);
-			System.out.print(snake.getBody().get(0).getY()+"\n");
 			
 			if(GameContainer.getInstance().isGameOver()){
 				break;
 			}
 			
-	//		FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 		}
 		
 		FrameManager.getInstance().getGameoverFrame().setVisible(true);

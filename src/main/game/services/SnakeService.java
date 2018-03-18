@@ -48,7 +48,7 @@ public class SnakeService {
 		if((tail.getX() == food.getX())&&(tail.getY() == food.getY())){
 			
 			List <Cell> body = snake.getBody();
-			body.add(new Cell(tail.getX(), tail.getY()));
+			body.add(0, new Cell(tail.getX(), tail.getY()));
 			FoodService.getInstance().randomPosition(food);
 			
 		}
