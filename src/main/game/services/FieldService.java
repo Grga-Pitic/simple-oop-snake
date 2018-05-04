@@ -3,6 +3,7 @@ package main.game.services;
 import java.util.List;
 
 import main.game.Cell;
+import main.game.GameContainer;
 import main.game.Snake;
 
 /**
@@ -19,6 +20,16 @@ public class FieldService {
 		
 		for(Cell cell:body){
 			field[cell.getX()][cell.getY()] = true;
+		}
+		
+	}
+	
+	public void removeTheSnake(boolean [][] field, Snake snake){
+		
+		List <Cell> body = snake.getBody();
+		
+		for(Cell cell:body){
+			field[cell.getX()][cell.getY()] = false;
 		}
 		
 	}

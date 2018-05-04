@@ -1,13 +1,11 @@
 package main.frames.manager;
 
-import java.util.Map;
-
 import javax.swing.JFrame;
 
 import main.frames.GameFrame;
 import main.frames.GameoverFrame;
 import main.frames.MenuFrame;
-import main.game.GameContainer;
+import main.frames.SettingsFrame;
 
 public class FrameManager {
 	private static FrameManager instance;
@@ -15,6 +13,7 @@ public class FrameManager {
 	private JFrame gameFrame;
 	private JFrame menuFrame;
 	private JFrame gameoverFrame;
+	private JFrame settingsFrame;
 	
 	public JFrame getGameoverFrame() {
 		if(gameoverFrame == null){
@@ -35,6 +34,15 @@ public class FrameManager {
 			this.menuFrame = new MenuFrame();
 		}
 		return this.menuFrame;
+	}
+	
+	public JFrame getSettingsFrame(){
+		
+		if(settingsFrame == null){
+			settingsFrame = new SettingsFrame();
+		}
+		return settingsFrame;
+		
 	}
 	
 	public static FrameManager getInstance() {

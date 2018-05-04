@@ -10,16 +10,13 @@ import main.settings.model.Settings;
  *
  */
 public class GameContainer {
-	public static final int WIDTH     = 16;
-	public static final int HEIGHT    = 16;
-	
-	public static final int NORMAL_SPEED = 200;
-	public static final int LOW_SPEED    = NORMAL_SPEED*2;
-	public static final int HIGH_SPEED   = NORMAL_SPEED/2;
+	public static final int WIDTH  = 16;
+	public static final int HEIGHT = 16;
 	
 	private static volatile GameContainer instance;
 	
 	private boolean gameOver;
+	private boolean solidWalls;
 	
 	private boolean [][] field;
 	private Snake        snake;
@@ -30,10 +27,12 @@ public class GameContainer {
 	
 	public GameContainer() {
 		
-		this.field     = new boolean[WIDTH][HEIGHT];
 		this.gameOver  = false;
 		this.settings  = SettingFactory.getInstance().createSettings();
-		this.timeDelay = NORMAL_SPEED;
+		this.timeDelay = settings.getGameSpeed();
+		this.field     = new boolean[settings.getWidth()][settings.getHeight()];
+		applySpeed(Settings.SPEED_STEP);
+		
 	}
 	
 	public Snake getSnake() {
@@ -46,6 +45,10 @@ public class GameContainer {
 
 	public boolean[][] getField() {
 		return field;
+	}
+	
+	public void setField(boolean[][] field) {
+		this.field = field;
 	}
 	
 	public boolean isGameOver() {
@@ -75,12 +78,31 @@ public class GameContainer {
 	public Settings getSettings() {
 		return settings;
 	}
+	
+	public boolean isSolidWalls() {
+		return solidWalls;
+	}
+
+	public void setSolidWalls(boolean solidWalls) {
+		this.solidWalls = solidWalls;
+	}
+	
+	public void applySpeed(int speedStep){
+		
+		if(speedStep <= 0){
+			speedStep = 200;
+		}
+		
+		this.timeDelay = this.settings.getGameSpeed() * speedStep;
+		
+	}
 
 	public synchronized static GameContainer getInstance() {
 		
 		if(instance == null){
 			instance = new GameContainer();
 		}
+		
 		return instance;
 		
 	}

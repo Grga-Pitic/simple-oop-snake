@@ -22,10 +22,6 @@ public class Food {
 		
 		this.image          = image;
 		this.imageComponent = new CustomImage();
-		FrameManager.getInstance().getGameFrame().getContentPane().add(imageComponent);
-		
-//		this.x = x;
-//		this.y = y;
 		
 	}
 	

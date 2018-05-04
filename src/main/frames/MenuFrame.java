@@ -58,14 +58,14 @@ public class MenuFrame extends JFrame {
 		
 		JButton btnNewGame = new JButton("New Game");
 		btnNewGame.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent event) {
 				me.setVisible(false);
 				GameContainer game  = GameContainer.getInstance();
 				Snake snake         = game.getSnake();
 				
 				SnakeService.getInstance().initSnake(snake);
 				FieldService.getInstance().placeTheSnake(game.getField(), snake);
-				
+				game.setGameOver(false);
 				
 				new Thread(new GameThread()).start();
 				FrameManager.getInstance().getGameFrame().setVisible(true);
@@ -79,6 +79,11 @@ public class MenuFrame extends JFrame {
 		panel.add(btnNewGame, gbc_btnNewGame);
 		
 		JButton btnSettings = new JButton("Settings");
+		btnSettings.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				FrameManager.getInstance().getSettingsFrame().setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_btnSettings = new GridBagConstraints();
 		gbc_btnSettings.fill = GridBagConstraints.BOTH;
 		gbc_btnSettings.insets = new Insets(0, 0, 5, 0);
@@ -87,6 +92,11 @@ public class MenuFrame extends JFrame {
 		panel.add(btnSettings, gbc_btnSettings);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				System.exit(0);
+			}
+		});
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
 		gbc_btnExit.fill = GridBagConstraints.BOTH;
 		gbc_btnExit.gridx = 0;

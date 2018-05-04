@@ -17,9 +17,11 @@ public class SnakeService {
 	public void initSnake(Snake snake) {
 		
 		List <Cell> body = snake.getBody();
+		body.clear();
 		body.add(new Cell(2, 0));
 		body.add(new Cell(1, 0));
 		body.add(new Cell(0, 0));
+		snake.setDirection(Snake.RIGHT);
 		
 	}
 	
@@ -53,15 +55,13 @@ public class SnakeService {
 			
 		}
 		
-		if(!((tail.getX() >= 0) && (tail.getX() < GameContainer.WIDTH))) {
-			
+		if(!((tail.getX() >= 0) && (tail.getX() < GameContainer.getInstance().getSettings().getWidth()))) {
 			GameContainer.getInstance().setGameOver(true);
 			return;
 			
 		}
 		
-		if(!((tail.getY() >= 0) && (tail.getY() < GameContainer.HEIGHT))) {
-			
+		if(!((tail.getY() >= 0) && (tail.getY() < GameContainer.getInstance().getSettings().getHeight()))) {
 			GameContainer.getInstance().setGameOver(true);
 			return;
 			
@@ -84,12 +84,6 @@ public class SnakeService {
 		
 		return instance;
 	}
-	
-//	private void eat(Snake snake, int x, int y) {
-//		
-//		snake.getBody().add(new Cell(x, y));
-//		
-//	}
 	
 	private void copyPosition(Cell cell1, Cell cell2) {
 		

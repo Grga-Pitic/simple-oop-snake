@@ -1,13 +1,22 @@
 package main.frames;
 
 import javax.swing.JFrame;
+
 import java.awt.GridBagLayout;
+
 import javax.swing.JLabel;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import main.frames.manager.FrameManager;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GameoverFrame extends JFrame {
 	public GameoverFrame() {
@@ -54,6 +63,12 @@ public class GameoverFrame extends JFrame {
 		panel.add(btnNewGame, gbc_btnNewGame);
 		
 		JButton btnMenu = new JButton("Menu");
+		btnMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				FrameManager.getInstance().getGameFrame().setVisible(false);
+				FrameManager.getInstance().getMenuFrame().setVisible(true);
+			}
+		});
 		GridBagConstraints gbc_btnMenu = new GridBagConstraints();
 		gbc_btnMenu.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnMenu.anchor = GridBagConstraints.NORTH;
@@ -63,6 +78,11 @@ public class GameoverFrame extends JFrame {
 		panel.add(btnMenu, gbc_btnMenu);
 		
 		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				System.exit(0);
+			}
+		});
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
 		gbc_btnExit.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnExit.anchor = GridBagConstraints.NORTH;

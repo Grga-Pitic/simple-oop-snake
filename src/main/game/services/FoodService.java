@@ -15,15 +15,18 @@ public class FoodService {
 	
 	public void randomPosition(Food food) {
 		
+		int fieldWidth  = GameContainer.getInstance().getSettings().getWidth();
+		int fieldHeigth =  GameContainer.getInstance().getSettings().getHeight();
+		
 		Random random = new Random();
-		int x = random.nextInt(GameContainer.WIDTH);
-		int y = random.nextInt(GameContainer.HEIGHT);
+		int x = random.nextInt(fieldWidth);
+		int y = random.nextInt(fieldHeigth);
 		
 		boolean [][] field = GameContainer.getInstance().getField();
 		
 		if(field[x][y]){
-			x = random.nextInt(GameContainer.WIDTH);
-			y = random.nextInt(GameContainer.HEIGHT);
+			x = random.nextInt(fieldWidth);
+			y = random.nextInt(fieldHeigth);
 		}
 		
 		food.setX(x);

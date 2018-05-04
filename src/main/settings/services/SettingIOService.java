@@ -11,29 +11,40 @@ import java.io.ObjectOutputStream;
 import main.settings.model.Settings;
 
 /**
- * Class-service. It does all file working.
+ * Class-service. It does file saving and file loading.
  * @author Grga
  *
  */
 public class SettingIOService {
 	private static SettingIOService instance;
 	
-	public void saveToFile(Settings settings) throws IOException{
-		
+	public void saveToFile(Settings settings) throws IOException {
 		File settingsFolder = new File("settings");
+		File settingsFile   = new File("settings/GameSettings.txt");
+		
 		if(!settingsFolder.exists()){
 			settingsFolder.mkdir();
 		}
-		ObjectOutputStream output = new ObjectOutputStream(new FileOutputStream("settings/GameSettings.txt"));
-		output.writeObject(settings);
-		output.close();
+		
+		ObjectOutputStream output;
+		try {
+			output = new ObjectOutputStream(new FileOutputStream(settingsFile));
+			output.writeObject(settings);
+			output.close();
+		} catch (FileNotFoundException e) {
+			settingsFile.createNewFile();
+			output = new ObjectOutputStream(new FileOutputStream(settingsFile));
+			output.writeObject(settings);
+			output.close();
+		}
 		
 	}
 	
-	public void loadFromFile(Settings settings) throws FileNotFoundException, IOException, ClassNotFoundException {
-		ObjectInputStream input = new ObjectInputStream(new FileInputStream(""));
-		Settings readed = (Settings)input.readObject();
-		SettingService.getInstance().copySettings(settings, readed);
+	public Settings loadFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
+		
+		ObjectInputStream input = new ObjectInputStream(new FileInputStream("settings/GameSettings.txt"));
+		return (Settings)input.readObject();
+
 	}
 	
 	public static SettingIOService getInstance() {

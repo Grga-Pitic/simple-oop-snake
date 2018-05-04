@@ -11,6 +11,7 @@ import java.awt.Color;
 
 public class GameFrame extends JFrame {
 	public GameFrame() {
+		
 		setFocusable(true);
 		int width  = GameContainer.getInstance().getSettings().getWidth();
 		int height = GameContainer.getInstance().getSettings().getHeight();
@@ -22,11 +23,14 @@ public class GameFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-
-		
-	//	CustomImage customImage = new CustomImage();
-	//	customImage.setBounds(26, 25, 54, 50);
-	//	getContentPane().add(customImage);
-		
+		getContentPane().add(GameContainer.getInstance().getFood().getImageComponent());
 	}
+	
+	public void changeSize(){
+		int width  = GameContainer.getInstance().getSettings().getWidth();
+		int height = GameContainer.getInstance().getSettings().getHeight();
+		setSize(width*CustomImage.CELL_SIZE+6, 
+				height*CustomImage.CELL_SIZE+28); // constants is workaround
+	}
+	
 }

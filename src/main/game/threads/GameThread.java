@@ -6,6 +6,7 @@ import main.game.GameContainer;
 import main.game.Snake;
 import main.game.painter.IPainter;
 import main.game.painter.SnakePainter;
+import main.game.services.FieldService;
 import main.game.services.FoodService;
 import main.game.services.SnakeService;
 
@@ -30,7 +31,7 @@ public class GameThread implements Runnable {
 			painter.drawFood(food);
 			FrameManager.getInstance().getGameFrame().getContentPane().repaint();
 			try {
-				Thread.sleep(GameContainer.getInstance().getSettings().getGameSpeed());
+				Thread.sleep(GameContainer.getInstance().getTimeDelay());
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -38,14 +39,17 @@ public class GameThread implements Runnable {
 			SnakeService.getInstance().move(snake);
 			
 			if(GameContainer.getInstance().isGameOver()){
+				
+				FieldService.getInstance().removeTheSnake(GameContainer.getInstance().getField(), snake);
+				FrameManager.getInstance().getGameFrame().getContentPane().removeAll();
+				FrameManager.getInstance().getGameFrame().getContentPane().add(GameContainer.getInstance().getFood().getImageComponent());
+				
 				break;
 			}
 			
 		}
 		
 		FrameManager.getInstance().getGameoverFrame().setVisible(true);
-		
-		System.out.print("end of thread\n");
 		
 	}
 

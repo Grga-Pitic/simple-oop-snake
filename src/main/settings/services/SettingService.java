@@ -18,10 +18,12 @@ public class SettingService {
 	 * @param s2 copies settings from this parameter
 	 */
 	public void copySettings(Settings s1, Settings s2) {
+		
 		s1.setGameSpeed(s2.getGameSpeed());
 		s1.setHeight(s2.getHeight());
 		s1.setWidth(s2.getWidth());
 		s1.setSolidWalls(s2.isSolidWalls());
+	
 	}
 	
 	public void setDefaultSettings(Settings settings) {
@@ -34,10 +36,12 @@ public class SettingService {
 	}
 	
 	public static SettingService getInstance() {
+		
 		if(instance == null){
 			instance = new SettingService();
 		}
 		return instance;
+		
 	}
 	
 	
