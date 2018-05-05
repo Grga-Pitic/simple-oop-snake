@@ -94,6 +94,13 @@ public class SettingsFrame extends JFrame {
 		
 		solidWallsBox = new JComboBox();
 		solidWallsBox.setModel(new DefaultComboBoxModel(new String[] {"Disabled", "Enabled"}));
+		
+		if(GameContainer.getInstance().getSettings().isSolidWalls()){
+			solidWallsBox.setSelectedIndex(1);
+		} else {
+			solidWallsBox.setSelectedIndex(0);
+		}
+		
 		GridBagConstraints gbc_solidWallsBox = new GridBagConstraints();
 		gbc_solidWallsBox.insets = new Insets(0, 0, 5, 0);
 		gbc_solidWallsBox.fill = GridBagConstraints.HORIZONTAL;

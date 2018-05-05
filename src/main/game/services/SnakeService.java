@@ -45,6 +45,25 @@ public class SnakeService {
 					      break;
 		}
 		
+		
+		if(GameContainer.getInstance().getSettings().isSolidWalls()){
+			
+			if(isWallCollision(tail)){
+				GameContainer.getInstance().setGameOver(true);
+				return;
+			}
+			
+		} else {
+			
+			teleportCell(tail);
+			
+		}
+		
+		if(isWallCollision(tail)){
+			GameContainer.getInstance().setGameOver(true);
+			return;
+		}
+		
 		Food food = GameContainer.getInstance().getFood();
 		
 		if((tail.getX() == food.getX())&&(tail.getY() == food.getY())){
@@ -52,18 +71,6 @@ public class SnakeService {
 			List <Cell> body = snake.getBody();
 			body.add(0, new Cell(tail.getX(), tail.getY()));
 			FoodService.getInstance().randomPosition(food);
-			
-		}
-		
-		if(!((tail.getX() >= 0) && (tail.getX() < GameContainer.getInstance().getSettings().getWidth()))) {
-			GameContainer.getInstance().setGameOver(true);
-			return;
-			
-		}
-		
-		if(!((tail.getY() >= 0) && (tail.getY() < GameContainer.getInstance().getSettings().getHeight()))) {
-			GameContainer.getInstance().setGameOver(true);
-			return;
 			
 		}
 		
@@ -83,6 +90,41 @@ public class SnakeService {
 		}
 		
 		return instance;
+	}
+	
+	private boolean isWallCollision(Cell tail){
+		if(!((tail.getX() >= 0) && (tail.getX() < GameContainer.getInstance().getSettings().getWidth()))) {
+			return true;
+			
+		}
+		
+		if(!((tail.getY() >= 0) && (tail.getY() < GameContainer.getInstance().getSettings().getHeight()))) {
+			return true;
+		}
+		
+		return false;
+	}
+	
+	private void teleportCell(Cell tail){
+		if(tail.getX() < 0){
+			tail.setX(GameContainer.getInstance().getSettings().getWidth()-1);
+			return;
+		}
+		
+		if(tail.getX() >=  GameContainer.getInstance().getSettings().getWidth()){
+			tail.setX(0);
+			return;
+		}
+		
+		if(tail.getY() < 0){
+			tail.setY(GameContainer.getInstance().getSettings().getHeight()-1);
+			return;
+		}
+		
+		if(tail.getY() >= GameContainer.getInstance().getSettings().getHeight()){
+			tail.setY(0);
+			return;
+		}
 	}
 	
 	private void copyPosition(Cell cell1, Cell cell2) {
