@@ -27,23 +27,25 @@ public class SettingIOService {
 		}
 		
 		ObjectOutputStream output;
+		output = new ObjectOutputStream(new FileOutputStream(settingsFile));
 		try {
-			output = new ObjectOutputStream(new FileOutputStream(settingsFile));
 			output.writeObject(settings);
-			output.close();
+			
 		} catch (FileNotFoundException e) {
 			settingsFile.createNewFile();
-			output = new ObjectOutputStream(new FileOutputStream(settingsFile));
 			output.writeObject(settings);
-			output.close();
 		}
+		output.close();
 		
 	}
 	
+	// TODO
 	public Settings loadFromFile() throws FileNotFoundException, IOException, ClassNotFoundException {
 		
 		ObjectInputStream input = new ObjectInputStream(new FileInputStream("settings/GameSettings.txt"));
-		return (Settings)input.readObject();
+		Settings settings = (Settings)input.readObject();
+		input.close();
+		return settings;
 
 	}
 	

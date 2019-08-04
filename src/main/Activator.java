@@ -24,9 +24,9 @@ public class Activator {
 		Food  food;
 		
 		try {
-			snake.setHeadImage(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\head.jpg")));
-			snake.setBodyImage(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\body.jpg")));
-			food = new Food(ImageIO.read(new File("C:\\Users\\Grga\\Pictures\\snake\\head.jpg")));
+			snake.setHeadImage(ImageIO.read(new File("images/head.jpg")));
+			snake.setBodyImage(ImageIO.read(new File("images/body.jpg")));
+			food = new Food(ImageIO.read(new File("images/head.jpg")));
 			game.setSnake(snake);
 			game.setFood(food);
 		} catch (IOException e) {

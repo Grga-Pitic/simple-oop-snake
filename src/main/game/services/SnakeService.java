@@ -35,13 +35,17 @@ public class SnakeService {
 		copyPosition(tail, head);
 		
 		switch(snake.getDirection()){
-		case Snake.RIGHT: tail.setX(tail.getX()+1);
+		case Snake.RIGHT: if(snake.getOldDirection() == Snake.LEFT){break;}
+						  tail.setX(tail.getX()+1);
 					      break;
-		case Snake.LEFT:  tail.setX(tail.getX()-1);
+		case Snake.LEFT:  if(snake.getOldDirection() == Snake.RIGHT){break;}
+						  tail.setX(tail.getX()-1);
 						  break;
-		case Snake.DOWN:  tail.setY(tail.getY()+1);
+		case Snake.DOWN:  if(snake.getOldDirection() == Snake.UP){break;}
+						  tail.setY(tail.getY()+1);
 						  break;
-		case Snake.UP:    tail.setY(tail.getY()-1);
+		case Snake.UP:    if(snake.getOldDirection() == Snake.DOWN){break;}
+						  tail.setY(tail.getY()-1);
 					      break;
 		}
 		
@@ -59,28 +63,32 @@ public class SnakeService {
 			
 		}
 		
-		if(isWallCollision(tail)){
+//		if(isWallCollision(tail)){
+//			GameContainer.getInstance().setGameOver(true);
+//			return;
+//		}
+		
+		
+		// Checking for body collision.
+		
+		if(GameContainer.getInstance().getField()[tail.getX()][tail.getY()]){
 			GameContainer.getInstance().setGameOver(true);
 			return;
 		}
 		
+		snake.getBody().add(0, tail);
+		field[tail.getX()][tail.getY()] = true;
+		
+		// Cheacking for eating.
+		
 		Food food = GameContainer.getInstance().getFood();
 		
 		if((tail.getX() == food.getX())&&(tail.getY() == food.getY())){
-			
 			List <Cell> body = snake.getBody();
-			body.add(0, new Cell(tail.getX(), tail.getY()));
+			body.add(1, new Cell(tail.getX(), tail.getY()));
 			FoodService.getInstance().randomPosition(food);
 			
 		}
-		
-		if(!GameContainer.getInstance().getField()[tail.getX()][tail.getY()]){
-			snake.getBody().add(0, tail);
-			field[tail.getX()][tail.getY()] = true;
-			return;
-		}
-		GameContainer.getInstance().setGameOver(true);
-		
 	}
 	
 	public static SnakeService getInstance() {

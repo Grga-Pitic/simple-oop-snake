@@ -3,7 +3,6 @@ package main.game.services;
 import java.util.List;
 
 import main.game.Cell;
-import main.game.GameContainer;
 import main.game.Snake;
 
 /**

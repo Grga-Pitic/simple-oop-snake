@@ -22,10 +22,12 @@ public class Snake {
 	private Image bodyImage;
 	
 	private int direction;
+	private int oldDirection;
 	
 	public Snake(List <Cell> body) {
-		this.body = body;
-		this.direction = RIGHT;
+		this.body         = body;
+		this.direction    = RIGHT;
+		this.oldDirection = RIGHT;
 	}
 	
 	public int getDirection() {
@@ -33,7 +35,12 @@ public class Snake {
 	}
 
 	public void setDirection(int direction) {
-		this.direction = direction;
+		this.oldDirection = this.direction;
+		this.direction    = direction;
+	}
+	
+	public int getOldDirection(){
+		return this.oldDirection;
 	}
 
 	public Image getHeadImage() {

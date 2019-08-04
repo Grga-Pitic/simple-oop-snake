@@ -24,9 +24,10 @@ public class FoodService {
 		
 		boolean [][] field = GameContainer.getInstance().getField();
 		
-		if(field[x][y]){
+		while(field[x][y]){ 
 			x = random.nextInt(fieldWidth);
 			y = random.nextInt(fieldHeigth);
+			
 		}
 		
 		food.setX(x);

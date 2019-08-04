@@ -3,7 +3,6 @@ package main.game;
 import java.awt.Image;
 
 import main.frames.components.CustomImage;
-import main.frames.manager.FrameManager;
 
 
 /**

@@ -2,7 +2,6 @@ package main.frames;
 
 import javax.swing.JFrame;
 
-import java.awt.Frame;
 import java.awt.GridBagLayout;
 
 import javax.swing.JPanel;

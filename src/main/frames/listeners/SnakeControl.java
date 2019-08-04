@@ -10,6 +10,8 @@ import main.game.GameContainer;
 import main.game.Snake;
 
 public class SnakeControl implements KeyListener {
+	
+	// TODO Fill char set.
 	private Set <Character> upSimbols;
 	private Set <Character> downSimbols;
 	private Set <Character> leftSimbols;
